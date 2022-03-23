@@ -1,0 +1,15 @@
+{
+  "name": "minesweeper-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/lodash": "^4.14.180",
+    "@types/node": "^17.0.22",
+    "lodash": "^4.17.21",
+    "typescript": "^4.6.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.7.0"
+  }
+}
