@@ -26,12 +26,12 @@ struct Adjacent {
 fn check_mines_adjacents(rows: usize, cols: usize, i: usize, j: usize) -> Vec<Adjacent> {
     [
         (i.checked_sub(1), j.checked_sub(1)),
-        (Some(i.clone()), j.checked_sub(1)),
+        (Some(i), j.checked_sub(1)),
         (i.checked_add(1), j.checked_sub(1)),
-        (i.checked_sub(1), Some(j.clone())),
-        (i.checked_add(1), Some(j.clone())),
+        (i.checked_sub(1), Some(j)),
+        (i.checked_add(1), Some(j)),
         (i.checked_sub(1), j.checked_add(1)),
-        (Some(i.clone()), j.checked_add(1)),
+        (Some(i), j.checked_add(1)),
         (i.checked_add(1), j.checked_add(1)),
     ]
     .into_iter()
@@ -44,7 +44,7 @@ fn check_mines_adjacents(rows: usize, cols: usize, i: usize, j: usize) -> Vec<Ad
             _ => None,
         }
     })
-    .flat_map(|o| -> Option<Adjacent> { o })
+    .flatten()
     .collect()
 }
 
@@ -54,8 +54,9 @@ fn gen_mine_sweeper(mine2d: Vec<String>) -> Vec<Vec<i32>> {
     mine2d
         .iter()
         .enumerate()
-        .map(|(j, ms)| -> Vec<i32> {
-            ms.chars()
+        .map(|(j, row_str)| -> Vec<i32> {
+            row_str
+                .chars()
                 .enumerate()
                 .map(|(i, c)| -> i32 {
                     match is_mine(c) {
