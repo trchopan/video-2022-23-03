@@ -26,11 +26,11 @@ const checkMinesAdjacents = (
     {i: i + 1, j: j + 1},
   ].filter(a => a.i >= 0 && a.j >= 0 && a.i < cols && a.j < rows);
 
-const genMineSweeper = (mine2d: string[]) => {
+const genMineSweeper = (mine2d: string[]): number[][] => {
   const rows = mine2d.length;
   const cols = mine2d[0].length;
-  return mine2d.map((ms, j) =>
-    ms.split('').map((c, i) =>
+  return mine2d.map((rowStr, j) =>
+    rowStr.split('').map((c, i) =>
       isMine(c)
         ? -1
         : sum(
