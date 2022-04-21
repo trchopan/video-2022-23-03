@@ -33,7 +33,7 @@ checkMinesAdjacents rows cols (i, j) = map Adjacent $ filter
 
 genMineSweeper :: [[Char]] -> [[Int]]
 genMineSweeper mines2d = zipWith
-  (\j xs -> zipWith
+  (\j rowStr -> zipWith
     (\i c -> case isMine c of
       True -> (-1)
       False ->
@@ -44,7 +44,7 @@ genMineSweeper mines2d = zipWith
         where adjacents = checkMinesAdjacents rows cols (i, j)
     )
     [0 ..]
-    xs
+    rowStr
   )
   [0 ..]
   mines2d
